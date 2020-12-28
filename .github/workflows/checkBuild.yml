@@ -30,3 +30,17 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
       working-directory: src
+    
+    - name: Execute testrun
+      run: |
+        chmod -R +x .
+        mkdir results
+        ./AWSIPRangeRouteCreator -o results/aws-routes.txt
+        ./AWSIPRangeRouteCreator -f openvpn -o results/aws-routes-openvpn.txt
+      working-directory: src/AWSIPRangeRouteCreator/bin/Release/net5.0
+
+    - name: Upload results
+      uses: actions/upload-artifact@v2
+      with:
+        name: results
+        path: src/AWSIPRangeRouteCreator/bin/Release/net5.0/results

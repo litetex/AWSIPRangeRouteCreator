@@ -1,0 +1,30 @@
+name: Check Integration
+
+on:
+  schedule:
+    - cron: '38 0 * * 3,6'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download and Prepare
+        run: |
+          curl -L https://github.com/litetex/AWSIPRangeRouteCreator/releases/latest/download/AWSIPRangeRouteCreator-linux-x64.zip -o temp.zip
+          unzip temp.zip
+          rm temp.zip
+          chmod -R +x .
+          
+      - name: Execute testrun
+        run: |
+          mkdir results
+          ./AWSIPRangeRouteCreator -o results/aws-routes.txt
+          ./AWSIPRangeRouteCreator -f openvpn -o results/aws-routes-openvpn.txt
+          
+      - name: Upload results
+        uses: actions/upload-artifact@v2
+        with:
+          name: results
+          path: results

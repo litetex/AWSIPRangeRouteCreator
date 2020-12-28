@@ -1,0 +1,40 @@
+name: Build Executable
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ develop ]
+    paths-ignore: 
+      - '**.md'
+  pull_request:
+    branches: [ master ]
+    paths-ignore: 
+      - '**.md'
+
+jobs: 
+  build_exec:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [win-x64, linux-x64, osx-x64]
+        configuration: [Release]
+        project: [AWSIPRangeRouteCreator]
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        
+    - name: Publish ${{ matrix.os }} ${{ matrix.configuration }} - dotnet publish 
+      working-directory: src/${{ matrix.project }}
+      run: dotnet publish -c ${{ matrix.configuration }} -r ${{ matrix.os }} -p:PublishSingleFile=true -p:DebugType=None -p:IncludeNativeLibrariesForSelfExtract=true
+
+    - name: Upload ${{ matrix.os }} - Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ matrix.project }}-${{ matrix.os }}
+        path: src/${{ matrix.project }}/bin/${{ matrix.configuration }}/net5.0/${{ matrix.os }}/publish
