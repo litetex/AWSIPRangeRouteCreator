@@ -19,8 +19,8 @@ namespace AWSIPRangeRouteCreator
       [Option("supernetfullipcheck", HelpText = "Checks if every IP is unique; Much slower but may fix broken aws data")]
       public bool SupernetFullIpCheck { get; set; } = false;
 
-      [Option('f', "outputfileformat", Default = OutputFileFormat.OpenVPN, HelpText = "Output file format")]
-      public OutputFileFormat OutputFileFormat { get; set; } = OutputFileFormat.OpenVPN;
+      [Option('f', "outputfileformat", Default = OutputFileFormat.Simple, HelpText = "Output file format")]
+      public OutputFileFormat OutputFileFormat { get; set; } = OutputFileFormat.Simple;
 
       [Option('o', "outputfile", Default = "aws-routes.txt", HelpText = "Outputfile path/name")]
       public string OutputFile { get; set; } = "aws-routes.txt";
