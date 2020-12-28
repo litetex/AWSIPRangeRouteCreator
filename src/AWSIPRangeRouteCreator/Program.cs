@@ -34,8 +34,6 @@ namespace AWSIPRangeRouteCreator
             {
                try
                {
-                  ConsoleController.TryShowConsole();
-
                   if (ev?.ExceptionObject is Exception ex)
                   {
                      Log.Fatal("An unhandled error occured", ex);
@@ -91,7 +89,6 @@ namespace AWSIPRangeRouteCreator
          }
          catch (Exception ex)
          {
-            ConsoleController.TryShowConsole();
             Log.Fatal(ex);
          }
 #endif
