@@ -20,7 +20,7 @@ jobs:
       - name: Execute testrun
         run: |
           mkdir results
-          ./AWSIPRangeRouteCreator -f openvpn -o results/aws-routes.txt
+          ./AWSIPRangeRouteCreator -o results/aws-routes.txt
           ./AWSIPRangeRouteCreator -f openvpn -o results/aws-routes-openvpn.txt
           
       - name: Upload results

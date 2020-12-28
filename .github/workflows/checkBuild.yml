@@ -35,7 +35,7 @@ jobs:
       run: |
         chmod -R +x .
         mkdir results
-        ./AWSIPRangeRouteCreator -f openvpn -o results/aws-routes.txt
+        ./AWSIPRangeRouteCreator -o results/aws-routes.txt
         ./AWSIPRangeRouteCreator -f openvpn -o results/aws-routes-openvpn.txt
       working-directory: src/AWSIPRangeRouteCreator/bin/Release/net5.0
 
