@@ -1,6 +1,7 @@
 # AWSIPRangeRouteCreator [![Release workflow runs](https://img.shields.io/github/workflow/status/litetex/AWSIPRangeRouteCreator/Release)](https://github.com/litetex/AWSIPRangeRouteCreator/actions?query=workflow%3A%22Release%22) [![Latest Version](https://img.shields.io/github/v/release/litetex/AWSIPRangeRouteCreator)](https://github.com/litetex/AWSIPRangeRouteCreator/releases)
 Creates simplified routes for AWS ip ranges
 
+### [:wrench: Configuration](docs/Configuration.md)
 
 ### Development
 | Workflow | Status |
